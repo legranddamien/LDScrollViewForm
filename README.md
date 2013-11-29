@@ -9,7 +9,7 @@ To create a form :
 
 * Make your form by adding subviews in a UIScrollView (like UITextField, UITextView, UILabel ....)
 * Your View Controller have to extend LDScrollViewController
-* The finaly need to register the UIScrollView with the method `[self setForm:myScrollView]`
+* Finally you need to register the UIScrollView with the method `[self setForm:myScrollView]`
 
 ## Requirements
 
