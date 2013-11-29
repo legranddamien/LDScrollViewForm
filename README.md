@@ -5,7 +5,11 @@
 
 ## Usage
 
-To run the example project; clone the repo, and run `pod install` from the Project directory first.
+To create a form : 
+
+* Make your form by adding subviews in a UIScrollView (like UITextField, UITextView, UILabel ....)
+* Your View Controller have to extend LDScrollViewController
+* The finaly need to register the UIScrollView with the method `[self setForm:myScrollView]`
 
 ## Requirements
 
@@ -23,4 +27,3 @@ Damien Legrand,
 ## License
 
 LDScrollViewForm is available under the MIT license. See the LICENSE file for more info.
-
