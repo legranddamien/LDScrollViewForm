@@ -7,30 +7,14 @@
 Pod::Spec.new do |s|
   s.name         = "LDScrollViewForm"
   s.version      = "0.1.0"
-  s.summary      = "A short description of LDScrollViewForm."
-  s.description  = <<-DESC
-                    An optional longer description of LDScrollViewForm
-
-                    * Markdown format.
-                    * Don't worry about the indent, we strip it!
-                   DESC
-  s.homepage     = "http://EXAMPLE/NAME"
-  s.screenshots  = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.summary      = "Controller helping to manage a form on iOS by avoiding the keyboard and adapte the size of UITextViews"
   s.license      = 'MIT'
-  s.author       = { "Damien Legrand" => "" }
-  s.source       = { :git => "http://EXAMPLE/NAME.git", :tag => s.version.to_s }
+  s.author       = 'Damien Legrand'
+  s.social_media_url = 'https://twitter.com/damien_legrand'
+  s.source       = { :git => "https://github.com/snoozeman/LDScrollViewForm.git", :tag => s.version.to_s }
 
-  # s.platform     = :ios, '5.0'
-  # s.ios.deployment_target = '5.0'
-  # s.osx.deployment_target = '10.7'
+  s.platform     = :ios, '5.0'
   s.requires_arc = true
 
   s.source_files = 'Classes'
-  s.resources = 'Assets'
-
-  s.ios.exclude_files = 'Classes/osx'
-  s.osx.exclude_files = 'Classes/ios'
-  # s.public_header_files = 'Classes/**/*.h'
-  # s.frameworks = 'SomeFramework', 'AnotherFramework'
-  # s.dependency 'JSONKit', '~> 1.4'
 end

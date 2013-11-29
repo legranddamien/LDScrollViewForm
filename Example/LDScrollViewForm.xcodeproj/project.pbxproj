@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A42BA8CD18460232005A407E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42BA8CC18460232005A407E /* Foundation.framework */; };
+		A42BA8CF18460232005A407E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42BA8CE18460232005A407E /* CoreGraphics.framework */; };
+		A42BA8D118460232005A407E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42BA8D018460232005A407E /* UIKit.framework */; };
+		A42BA8D718460232005A407E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A42BA8D518460232005A407E /* InfoPlist.strings */; };
+		A42BA8D918460232005A407E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA8D818460232005A407E /* main.m */; };
+		A42BA8DD18460232005A407E /* LDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA8DC18460232005A407E /* LDAppDelegate.m */; };
+		A42BA8E018460232005A407E /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A42BA8DE18460232005A407E /* Main_iPhone.storyboard */; };
+		A42BA8E318460232005A407E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A42BA8E118460232005A407E /* Main_iPad.storyboard */; };
+		A42BA8E618460232005A407E /* LDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA8E518460232005A407E /* LDViewController.m */; };
+		A42BA8E818460232005A407E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42BA8E718460232005A407E /* Images.xcassets */; };
+		A42BA8EF18460232005A407E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42BA8EE18460232005A407E /* XCTest.framework */; };
+		A42BA8F018460232005A407E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42BA8CC18460232005A407E /* Foundation.framework */; };
+		A42BA8F118460232005A407E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42BA8D018460232005A407E /* UIKit.framework */; };
+		A42BA8F918460232005A407E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A42BA8F718460232005A407E /* InfoPlist.strings */; };
+		A42BA8FB18460232005A407E /* LDScrollViewFormTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA8FA18460232005A407E /* LDScrollViewFormTests.m */; };
+		A42BA90E18489E34005A407E /* LDNoAutoLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA90C18489E34005A407E /* LDNoAutoLayoutViewController.m */; };
+		A42BA90F18489E34005A407E /* LDNoAutoLayoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BA90D18489E34005A407E /* LDNoAutoLayoutViewController.xib */; };
+		A42BA9121848A585005A407E /* LDScrollViewFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA9111848A585005A407E /* LDScrollViewFormController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A42BA8F218460232005A407E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A42BA8C118460232005A407E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A42BA8C818460232005A407E;
+			remoteInfo = LDScrollViewForm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A42BA8C918460232005A407E /* LDScrollViewForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LDScrollViewForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A42BA8CC18460232005A407E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A42BA8CE18460232005A407E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A42BA8D018460232005A407E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A42BA8D418460232005A407E /* LDScrollViewForm-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LDScrollViewForm-Info.plist"; sourceTree = "<group>"; };
+		A42BA8D618460232005A407E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A42BA8D818460232005A407E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A42BA8DA18460232005A407E /* LDScrollViewForm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LDScrollViewForm-Prefix.pch"; sourceTree = "<group>"; };
+		A42BA8DB18460232005A407E /* LDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAppDelegate.h; sourceTree = "<group>"; };
+		A42BA8DC18460232005A407E /* LDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAppDelegate.m; sourceTree = "<group>"; };
+		A42BA8DF18460232005A407E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		A42BA8E218460232005A407E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		A42BA8E418460232005A407E /* LDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDViewController.h; sourceTree = "<group>"; };
+		A42BA8E518460232005A407E /* LDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDViewController.m; sourceTree = "<group>"; };
+		A42BA8E718460232005A407E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A42BA8ED18460232005A407E /* LDScrollViewFormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LDScrollViewFormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A42BA8EE18460232005A407E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		A42BA8F618460232005A407E /* LDScrollViewFormTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LDScrollViewFormTests-Info.plist"; sourceTree = "<group>"; };
+		A42BA8F818460232005A407E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A42BA8FA18460232005A407E /* LDScrollViewFormTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDScrollViewFormTests.m; sourceTree = "<group>"; };
+		A42BA90B18489E34005A407E /* LDNoAutoLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDNoAutoLayoutViewController.h; sourceTree = "<group>"; };
+		A42BA90C18489E34005A407E /* LDNoAutoLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDNoAutoLayoutViewController.m; sourceTree = "<group>"; };
+		A42BA90D18489E34005A407E /* LDNoAutoLayoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDNoAutoLayoutViewController.xib; sourceTree = "<group>"; };
+		A42BA9101848A585005A407E /* LDScrollViewFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LDScrollViewFormController.h; path = ../../../Classes/ios/LDScrollViewFormController.h; sourceTree = "<group>"; };
+		A42BA9111848A585005A407E /* LDScrollViewFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LDScrollViewFormController.m; path = ../../../Classes/ios/LDScrollViewFormController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A42BA8C618460232005A407E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42BA8CF18460232005A407E /* CoreGraphics.framework in Frameworks */,
+				A42BA8D118460232005A407E /* UIKit.framework in Frameworks */,
+				A42BA8CD18460232005A407E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A42BA8EA18460232005A407E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42BA8EF18460232005A407E /* XCTest.framework in Frameworks */,
+				A42BA8F118460232005A407E /* UIKit.framework in Frameworks */,
+				A42BA8F018460232005A407E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A42BA8C018460232005A407E = {
+			isa = PBXGroup;
+			children = (
+				A42BA8D218460232005A407E /* LDScrollViewForm */,
+				A42BA8F418460232005A407E /* LDScrollViewFormTests */,
+				A42BA8CB18460232005A407E /* Frameworks */,
+				A42BA8CA18460232005A407E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A42BA8CA18460232005A407E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A42BA8C918460232005A407E /* LDScrollViewForm.app */,
+				A42BA8ED18460232005A407E /* LDScrollViewFormTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A42BA8CB18460232005A407E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A42BA8CC18460232005A407E /* Foundation.framework */,
+				A42BA8CE18460232005A407E /* CoreGraphics.framework */,
+				A42BA8D018460232005A407E /* UIKit.framework */,
+				A42BA8EE18460232005A407E /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A42BA8D218460232005A407E /* LDScrollViewForm */ = {
+			isa = PBXGroup;
+			children = (
+				A42BA90418460B76005A407E /* Classes */,
+				A42BA8DB18460232005A407E /* LDAppDelegate.h */,
+				A42BA8DC18460232005A407E /* LDAppDelegate.m */,
+				A42BA8DE18460232005A407E /* Main_iPhone.storyboard */,
+				A42BA8E118460232005A407E /* Main_iPad.storyboard */,
+				A42BA8E418460232005A407E /* LDViewController.h */,
+				A42BA8E518460232005A407E /* LDViewController.m */,
+				A42BA90B18489E34005A407E /* LDNoAutoLayoutViewController.h */,
+				A42BA90C18489E34005A407E /* LDNoAutoLayoutViewController.m */,
+				A42BA90D18489E34005A407E /* LDNoAutoLayoutViewController.xib */,
+				A42BA8E718460232005A407E /* Images.xcassets */,
+				A42BA8D318460232005A407E /* Supporting Files */,
+			);
+			path = LDScrollViewForm;
+			sourceTree = "<group>";
+		};
+		A42BA8D318460232005A407E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A42BA8D418460232005A407E /* LDScrollViewForm-Info.plist */,
+				A42BA8D518460232005A407E /* InfoPlist.strings */,
+				A42BA8D818460232005A407E /* main.m */,
+				A42BA8DA18460232005A407E /* LDScrollViewForm-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A42BA8F418460232005A407E /* LDScrollViewFormTests */ = {
+			isa = PBXGroup;
+			children = (
+				A42BA8FA18460232005A407E /* LDScrollViewFormTests.m */,
+				A42BA8F518460232005A407E /* Supporting Files */,
+			);
+			path = LDScrollViewFormTests;
+			sourceTree = "<group>";
+		};
+		A42BA8F518460232005A407E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A42BA8F618460232005A407E /* LDScrollViewFormTests-Info.plist */,
+				A42BA8F718460232005A407E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A42BA90418460B76005A407E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A42BA9101848A585005A407E /* LDScrollViewFormController.h */,
+				A42BA9111848A585005A407E /* LDScrollViewFormController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A42BA8C818460232005A407E /* LDScrollViewForm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A42BA8FE18460232005A407E /* Build configuration list for PBXNativeTarget "LDScrollViewForm" */;
+			buildPhases = (
+				A42BA8C518460232005A407E /* Sources */,
+				A42BA8C618460232005A407E /* Frameworks */,
+				A42BA8C718460232005A407E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LDScrollViewForm;
+			productName = LDScrollViewForm;
+			productReference = A42BA8C918460232005A407E /* LDScrollViewForm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A42BA8EC18460232005A407E /* LDScrollViewFormTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A42BA90118460232005A407E /* Build configuration list for PBXNativeTarget "LDScrollViewFormTests" */;
+			buildPhases = (
+				A42BA8E918460232005A407E /* Sources */,
+				A42BA8EA18460232005A407E /* Frameworks */,
+				A42BA8EB18460232005A407E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A42BA8F318460232005A407E /* PBXTargetDependency */,
+			);
+			name = LDScrollViewFormTests;
+			productName = LDScrollViewFormTests;
+			productReference = A42BA8ED18460232005A407E /* LDScrollViewFormTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A42BA8C118460232005A407E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LD;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Damien Legrand";
+				TargetAttributes = {
+					A42BA8EC18460232005A407E = {
+						TestTargetID = A42BA8C818460232005A407E;
+					};
+				};
+			};
+			buildConfigurationList = A42BA8C418460232005A407E /* Build configuration list for PBXProject "LDScrollViewForm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A42BA8C018460232005A407E;
+			productRefGroup = A42BA8CA18460232005A407E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A42BA8C818460232005A407E /* LDScrollViewForm */,
+				A42BA8EC18460232005A407E /* LDScrollViewFormTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A42BA8C718460232005A407E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42BA8E318460232005A407E /* Main_iPad.storyboard in Resources */,
+				A42BA90F18489E34005A407E /* LDNoAutoLayoutViewController.xib in Resources */,
+				A42BA8E818460232005A407E /* Images.xcassets in Resources */,
+				A42BA8E018460232005A407E /* Main_iPhone.storyboard in Resources */,
+				A42BA8D718460232005A407E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A42BA8EB18460232005A407E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42BA8F918460232005A407E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A42BA8C518460232005A407E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42BA8DD18460232005A407E /* LDAppDelegate.m in Sources */,
+				A42BA8D918460232005A407E /* main.m in Sources */,
+				A42BA8E618460232005A407E /* LDViewController.m in Sources */,
+				A42BA9121848A585005A407E /* LDScrollViewFormController.m in Sources */,
+				A42BA90E18489E34005A407E /* LDNoAutoLayoutViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A42BA8E918460232005A407E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42BA8FB18460232005A407E /* LDScrollViewFormTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A42BA8F318460232005A407E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A42BA8C818460232005A407E /* LDScrollViewForm */;
+			targetProxy = A42BA8F218460232005A407E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A42BA8D518460232005A407E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A42BA8D618460232005A407E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A42BA8DE18460232005A407E /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A42BA8DF18460232005A407E /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		A42BA8E118460232005A407E /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A42BA8E218460232005A407E /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		A42BA8F718460232005A407E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A42BA8F818460232005A407E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A42BA8FC18460232005A407E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A42BA8FD18460232005A407E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A42BA8FF18460232005A407E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LDScrollViewForm/LDScrollViewForm-Prefix.pch";
+				INFOPLIST_FILE = "LDScrollViewForm/LDScrollViewForm-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A42BA90018460232005A407E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LDScrollViewForm/LDScrollViewForm-Prefix.pch";
+				INFOPLIST_FILE = "LDScrollViewForm/LDScrollViewForm-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A42BA90218460232005A407E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LDScrollViewForm.app/LDScrollViewForm";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LDScrollViewForm/LDScrollViewForm-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LDScrollViewFormTests/LDScrollViewFormTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A42BA90318460232005A407E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LDScrollViewForm.app/LDScrollViewForm";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LDScrollViewForm/LDScrollViewForm-Prefix.pch";
+				INFOPLIST_FILE = "LDScrollViewFormTests/LDScrollViewFormTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A42BA8C418460232005A407E /* Build configuration list for PBXProject "LDScrollViewForm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A42BA8FC18460232005A407E /* Debug */,
+				A42BA8FD18460232005A407E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A42BA8FE18460232005A407E /* Build configuration list for PBXNativeTarget "LDScrollViewForm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A42BA8FF18460232005A407E /* Debug */,
+				A42BA90018460232005A407E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A42BA90118460232005A407E /* Build configuration list for PBXNativeTarget "LDScrollViewFormTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A42BA90218460232005A407E /* Debug */,
+				A42BA90318460232005A407E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A42BA8C118460232005A407E /* Project object */;
+}
