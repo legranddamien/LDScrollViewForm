@@ -24,7 +24,7 @@
 		A42BA8FB18460232005A407E /* LDScrollViewFormTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA8FA18460232005A407E /* LDScrollViewFormTests.m */; };
 		A42BA90E18489E34005A407E /* LDNoAutoLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA90C18489E34005A407E /* LDNoAutoLayoutViewController.m */; };
 		A42BA90F18489E34005A407E /* LDNoAutoLayoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BA90D18489E34005A407E /* LDNoAutoLayoutViewController.xib */; };
-		A42BA9121848A585005A407E /* LDScrollViewFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA9111848A585005A407E /* LDScrollViewFormController.m */; };
+		A42BA9151848B2CA005A407E /* LDScrollViewFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BA9141848B2CA005A407E /* LDScrollViewFormController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +61,8 @@
 		A42BA90B18489E34005A407E /* LDNoAutoLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDNoAutoLayoutViewController.h; sourceTree = "<group>"; };
 		A42BA90C18489E34005A407E /* LDNoAutoLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDNoAutoLayoutViewController.m; sourceTree = "<group>"; };
 		A42BA90D18489E34005A407E /* LDNoAutoLayoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDNoAutoLayoutViewController.xib; sourceTree = "<group>"; };
-		A42BA9101848A585005A407E /* LDScrollViewFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LDScrollViewFormController.h; path = ../../../Classes/ios/LDScrollViewFormController.h; sourceTree = "<group>"; };
-		A42BA9111848A585005A407E /* LDScrollViewFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LDScrollViewFormController.m; path = ../../../Classes/ios/LDScrollViewFormController.m; sourceTree = "<group>"; };
+		A42BA9131848B2CA005A407E /* LDScrollViewFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LDScrollViewFormController.h; path = ../../Classes/ios/LDScrollViewFormController.h; sourceTree = "<group>"; };
+		A42BA9141848B2CA005A407E /* LDScrollViewFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LDScrollViewFormController.m; path = ../../Classes/ios/LDScrollViewFormController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +170,8 @@
 		A42BA90418460B76005A407E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A42BA9101848A585005A407E /* LDScrollViewFormController.h */,
-				A42BA9111848A585005A407E /* LDScrollViewFormController.m */,
+				A42BA9131848B2CA005A407E /* LDScrollViewFormController.h */,
+				A42BA9141848B2CA005A407E /* LDScrollViewFormController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 				A42BA8DD18460232005A407E /* LDAppDelegate.m in Sources */,
 				A42BA8D918460232005A407E /* main.m in Sources */,
 				A42BA8E618460232005A407E /* LDViewController.m in Sources */,
-				A42BA9121848A585005A407E /* LDScrollViewFormController.m in Sources */,
+				A42BA9151848B2CA005A407E /* LDScrollViewFormController.m in Sources */,
 				A42BA90E18489E34005A407E /* LDNoAutoLayoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
