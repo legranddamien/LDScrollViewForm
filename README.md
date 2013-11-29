@@ -26,4 +26,4 @@ Damien Legrand,
 
 ## License
 
-LDScrollViewForm is available under the MIT license. See the LICENSE file for more info.
+LDScrollViewForm is available under the MIT license. See the LICENSE file for more info. 
