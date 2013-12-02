@@ -12,27 +12,42 @@
 
 - (void)setupForm;
 - (void)defineContentSize;
+
 - (void)observeViews:(NSArray *)views;
 - (void)observeKeyboard;
 - (void)removeViewsObservers:(NSArray *)views;
 - (void)removeKeyboardObservers;
+
 - (void)keyboardWillShow:(NSNotification *)notification;
 - (void)keyboardWillHide:(NSNotification *)notification;
+
 - (void)avoidKeyboard;
 - (void)avoidKeyboardForView:(UIView *)v;
 - (void)avoidKeyboardForTextViewSelection:(UITextView *)v;
+
 - (UIView *)findFirstResponderWithView:(UIView *)v;
+
 - (void)touche:(UITapGestureRecognizer *)gesture;
+
 - (void)nextView;
+
 - (UIView *)findNextViewWithCurrentView:(UIView *)currentView inForm:(UIView *)form;
+
 - (void)updateHeightForTextView:(UITextView *)textView withAnimated:(BOOL)animation;
-- (BOOL)moveAllViewUnderView:(UIView *)currentView withDistance:(CGFloat)distance inView:(UIView *)view;
+- (BOOL)moveAllViewsUnderView:(UIView *)currentView withDistance:(CGFloat)distance inView:(UIView *)view;
+
+- (void)updateFormWithView:(UIView *)view;
 
 @end
 
 @implementation LDScrollViewFormController
 
-#pragma mark - Controller Life
+
+
+
+
+
+#pragma mark - View Lifecycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,15 +65,20 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     if(_form != nil)
     {
         [self observeViews:_form.subviews];
         [self observeKeyboard];
+        [self updateForm];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    
     if(_form != nil)
     {
         [self removeViewsObservers:_form.subviews];
@@ -71,6 +91,11 @@
     [super didReceiveMemoryWarning];
 }
 
+
+
+
+
+
 #pragma mark - Public Methods
 
 - (void)setForm:(UIScrollView *)view
@@ -79,8 +104,51 @@
     [self setupForm];
 }
 
+- (void)textView:(UITextView *)textView limitedToMaxLength:(int)maxLength
+{
+    if(_form == nil) return;
+    
+    if(limitedTextViews == nil)
+    {
+        limitedTextViews = [NSMutableDictionary dictionary];
+    }
+    
+    NSValue *key = [NSValue valueWithNonretainedObject:textView];
+    
+    if ([limitedTextViews objectForKey:key] != nil)
+    {
+        [limitedTextViews removeObjectForKey:key];
+    }
+    
+    [limitedTextViews setObject:[NSNumber numberWithInt:maxLength] forKey:key];
+}
+
+- (void)updateForm
+{
+    if(_form == nil) return;
+    
+    [self updateFormWithView:_form];
+}
+
+- (void)addUnsuportedView:(UIView *)view
+{
+    NSMutableArray *array =  [NSMutableArray arrayWithObject:view];
+    [array addObjectsFromArray:_unsupportedViews];
+    _unsupportedViews = array;
+}
+
+
+
+
+
+
 #pragma mark - Private Methods
 
+/**
+ *  Call when the form is set
+ *  add the gesture to close the keyboard
+ *  and define the content size automatically
+ */
 - (void)setupForm
 {
     _form.delegate = self;
@@ -94,12 +162,20 @@
     [self defineContentSize];
 }
 
+/**
+ *  Call for the setup to add the good contentSize on the scrollview
+ */
 - (void)defineContentSize
 {
     CGFloat maxHeight = 0.0;
     
     for (UIView *subview in _form.subviews)
     {
+        if(_unsupportedViews != nil && [_unsupportedViews containsObject:subview])
+        {
+            continue;
+        }
+        
         //Find the height of the content
         CGFloat bottomPosition = subview.frame.origin.y + subview.frame.size.height;
         if(maxHeight < bottomPosition)
@@ -111,11 +187,19 @@
     _form.contentSize = CGSizeMake(_form.frame.size.width, maxHeight);
 }
 
+/**
+ *  This method add observers on views for the key "firstResponder"
+ *  so when a new view become firstResponder, we can define a new offset
+ * 
+ *  This method is recursive to go in subviews
+ *
+ *  @param views Normally only the form
+ */
 - (void)observeViews:(NSArray *)views
 {
     for (UIView *v in views)
     {
-        if([v respondsToSelector:@selector(isFirstResponder)])
+        if([v respondsToSelector:@selector(isFirstResponder)] && ![v isEqual:self.view])
         {
             [v addObserver:self forKeyPath:@"firstResponder" options:NSKeyValueObservingOptionNew context:nil];
             if ([v isKindOfClass:[UITextField class]])
@@ -125,13 +209,27 @@
             if ([v isKindOfClass:[UITextView class]])
             {
                 ((UITextView *)v).delegate = self;
+                
+                if(textViewHeights == nil)
+                {
+                    textViewHeights = [NSMutableDictionary dictionary];
+                }
+                
+                NSValue *key = [NSValue valueWithNonretainedObject:((UITextView *)v)];
+                if([textViewHeights objectForKey:((UITextView *)v)] == nil)
+                {
+                    [textViewHeights setObject:[NSNumber numberWithFloat:((UITextView *)v).frame.size.height] forKey:key];
+                }
             }
         }
         
-        [self observeViews:v.subviews];
+        if([v.subviews count] > 0) [self observeViews:v.subviews];
     }
 }
 
+/**
+ *  Observe when the keyboard show and hide
+ */
 - (void)observeKeyboard
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -144,6 +242,13 @@
                                                object:nil];
 }
 
+/**
+ *  Remove the observers on view
+ *
+ *  This method is recursive
+ *
+ *  @param views Normally the scrollView
+ */
 - (void)removeViewsObservers:(NSArray *)views
 {
     for (UIView *v in views)
@@ -161,6 +266,9 @@
     }
 }
 
+/**
+ *  Remove the keyboard show and hide observers
+ */
 - (void)removeKeyboardObservers
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -171,6 +279,12 @@
                                                   object:nil];
 }
 
+/**
+ *  This method is called when the keyboard will show
+ *  So we define the new bottom inset of the scroll view, so the content is not hidden by the keyboard
+ *
+ *  @param notification Keyboard Notification
+ */
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     CGRect end;
@@ -190,7 +304,7 @@
     {
         _isAnimating = YES;
         
-        [UIView animateKeyframesWithDuration:duration delay:0.0 options:curve animations:^{
+        [UIView animateWithDuration:duration delay:0.0 options:curve animations:^{
             _form.contentInset = inset;
         } completion:^(BOOL finished) {
             _isAnimating = NO;
@@ -206,6 +320,12 @@
     }
 }
 
+/**
+ *  This method is called when the keyboard will disapear
+ *  So we set back the default bottom inset
+ *
+ *  @param notification Keyboard Notification
+ */
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     double duration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
@@ -219,7 +339,7 @@
     if(!_animatingRotation)
     {
         _isAnimating = YES;
-        [UIView animateKeyframesWithDuration:duration delay:0.0 options:curve animations:^{
+        [UIView animateWithDuration:duration delay:0.0 options:curve animations:^{
             _form.contentInset = inset;
         } completion:^(BOOL finished) {
             _isAnimating = NO;
@@ -232,6 +352,9 @@
     }
 }
 
+/**
+ *  Change the offset of the scroll view to show the current firstResponder
+ */
 - (void)avoidKeyboard
 {
     UIView *currentView = [self findFirstResponderWithView:_form];
@@ -249,6 +372,11 @@
     }
 }
 
+/**
+ *  Change the offset of the scroll view to show the view
+ *
+ *  @param v a view in the scroll view
+ */
 - (void)avoidKeyboardForView:(UIView *)v
 {
     CGFloat visibleSpace = _form.bounds.size.height - _form.contentInset.top - _form.contentInset.bottom;
@@ -270,8 +398,19 @@
     [_form setContentOffset:CGPointMake(0, offset) animated:YES];
 }
 
+/**
+ *  Change the offset of the scroll view to show the current selection in a text view
+ *
+ *  @param v a text view in the scroll view
+ */
 - (void)avoidKeyboardForTextViewSelection:(UITextView *)v
 {
+    if(v.selectedTextRange == nil)
+    {
+        [self avoidKeyboardForView:v];
+        return;
+    }
+    
     CGFloat visibleSpace = _form.bounds.size.height - _form.contentInset.top - _form.contentInset.bottom;
     
     CGFloat offset = _form.contentOffset.y;
@@ -294,6 +433,15 @@
     [_form setContentOffset:CGPointMake(0, offset) animated:YES];
 }
 
+/**
+ *  Find the current firstResponder
+ *
+ *  This method is recursive
+ *
+ *  @param v Normally the scroll view
+ *
+ *  @return The current first responder view
+ */
 - (UIView *)findFirstResponderWithView:(UIView *)v
 {
     UIView *firstResponder = nil;
@@ -314,11 +462,19 @@
     return firstResponder;
 }
 
+/**
+ *  This method is called when the scroll view is touched
+ *
+ *  @param gesture The tap gesture
+ */
 - (void)touche:(UITapGestureRecognizer *)gesture
 {
     if(_isKeyboardOnScreen)[[self findFirstResponderWithView:_form] resignFirstResponder];
 }
 
+/**
+ *  Go to the next view in the scroll view
+ */
 - (void)nextView
 {
     UIView *nextView = [self findNextViewWithCurrentView:[self findFirstResponderWithView:_form] inForm:_form];
@@ -333,6 +489,16 @@
     }
 }
 
+/**
+ *  Will find the next view in the scroll view directly after the current view
+ *
+ *  This method is recursive
+ *
+ *  @param currentView the current view (first responder)
+ *  @param form        Normally the scroll
+ *
+ *  @return The next view
+ */
 - (UIView *)findNextViewWithCurrentView:(UIView *)currentView inForm:(UIView *)form
 {
     //Here the goal is to find the view under the current view (origin.y)
@@ -383,18 +549,16 @@
     return nil;
 }
 
+/**
+ *  Will update the height of the text view depending on her content size
+ *  and translate all views under
+ *
+ *  @param textView  The current Text View
+ *  @param animation With or without animation
+ */
 - (void)updateHeightForTextView:(UITextView *)textView withAnimated:(BOOL)animation
 {
-    if(textViewHeights == nil)
-    {
-        textViewHeights = [NSMutableDictionary dictionary];
-    }
-    
     NSValue *key = [NSValue valueWithNonretainedObject:textView];
-    if([textViewHeights objectForKey:textView] == nil)
-    {
-        [textViewHeights setObject:[NSNumber numberWithFloat:textView.frame.size.height] forKey:key];
-    }
     
     CGFloat height = textView.contentSize.height;
     if(height < [((NSNumber *)[textViewHeights objectForKey:key]) floatValue])
@@ -406,7 +570,7 @@
     
     if(diff == 0)
     {
-        [self avoidKeyboardForTextViewSelection:textView];
+        if(animation) [self avoidKeyboardForTextViewSelection:textView];
         return;
     }
     
@@ -419,7 +583,7 @@
                          _form.contentSize = contentSize;
                          
                          //Change the position of every views under the current view
-                         [self moveAllViewUnderView:textView withDistance:diff inView:_form];
+                         [self moveAllViewsUnderView:textView withDistance:diff inView:_form];
                          
                          //Change the size of the current view
                          CGRect currentFrame = textView.frame;
@@ -427,17 +591,28 @@
                          textView.frame = currentFrame;
                      }
                      completion:^(BOOL finished) {
-                         [self avoidKeyboardForTextViewSelection:textView];
+                         if(animation)[self avoidKeyboardForTextViewSelection:textView];
                      }];
 }
 
-- (BOOL)moveAllViewUnderView:(UIView *)currentView withDistance:(CGFloat)distance inView:(UIView *)view
+/**
+ *  Will move all views under the current text view
+ *
+ *  This method is recursive
+ *
+ *  @param currentView The current view
+ *  @param distance    The Distance to move
+ *  @param view        Normally the scroll view
+ *
+ *  @return Return Yes when all views on the same level as the current view have been moved
+ */
+- (BOOL)moveAllViewsUnderView:(UIView *)currentView withDistance:(CGFloat)distance inView:(UIView *)view
 {
     if([view.subviews containsObject:currentView])
     {
         for (UIView *v in view.subviews)
         {
-            if(v.frame.origin.y > currentView.frame.origin.y + currentView.frame.size.height)
+            if(v.frame.origin.y >= currentView.frame.origin.y + currentView.frame.size.height)
             {
                 CGRect currentFrame = v.frame;
                 currentFrame.origin.y += distance;
@@ -451,7 +626,7 @@
     {
         for (UIView *v in view.subviews)
         {
-            if([self moveAllViewUnderView:currentView withDistance:distance inView:v])
+            if([self moveAllViewsUnderView:currentView withDistance:distance inView:v])
             {
                 return YES;
             }
@@ -461,13 +636,39 @@
     return NO;
 }
 
+/**
+ *  Update all text views size depending on their contents
+ *
+ *  @param view Normally the scroll view
+ */
+- (void)updateFormWithView:(UIView *)view
+{
+    for (UIView *v in view.subviews)
+    {
+        if([v isKindOfClass:[UITextView class]])
+        {
+            [self updateHeightForTextView:(UITextView *)v withAnimated:NO];
+        }
+        else
+        {
+            [self updateFormWithView:v];
+        }
+    }
+}
+
+
+
+
+
+
+
 #pragma mark - Observer
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if(!_enableObserver) return;
     
-    if([object isKindOfClass:[UIView class]] && ((UIView *)object).isFirstResponder)
+    if([object isKindOfClass:[UIView class]] && ((UIView *)object).isFirstResponder && ![object isEqual:currentSelectedView])
     {
         if([object isKindOfClass:[UITextView class]])
         {
@@ -480,20 +681,44 @@
     }
 }
 
+
+
+
+
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    //Go to the next item in the form
+    currentSelectedView = textField;
     [self nextView];
     return NO;
 }
+
+
+
+
+
 
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    currentSelectedView = textView;
     [self updateHeightForTextView:textView withAnimated:YES];
 }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    //Limit the number of chars in UITextViews
+    NSValue *key = [NSValue valueWithNonretainedObject:textView];
+    return ([limitedTextViews objectForKey:key] == nil) ? YES : textView.text.length + (text.length - range.length) <= [(NSNumber *)[limitedTextViews objectForKey:key] intValue];
+}
+
+
+
+
 
 #pragma mark - Rotation
 
@@ -510,5 +735,10 @@
         [self avoidKeyboard];
     }
 }
+
+
+
+
+
 
 @end

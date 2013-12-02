@@ -16,11 +16,39 @@
     BOOL _isKeyboardOnScreen;
     BOOL _animatingRotation;
     NSMutableDictionary *textViewHeights;
+    NSMutableDictionary *limitedTextViews;
+    UIView *currentSelectedView;
 }
 
 @property (nonatomic) CGFloat heightAboveKeyboard;
+@property (strong, nonatomic) NSArray *unsupportedViews;
 
+/**
+ *  This method start to buid your form 
+ *  If your form is an edit form, before filling your fields, call this method
+ *
+ *  @param view The scroll view of your form
+ */
 - (void)setForm:(UIScrollView *)view;
 
+/**
+ *  Call This method when your form is an edit form and you already filled your fields
+ */
+- (void)updateForm;
+
+/**
+ *  This method help you to add a limit of characters in a UITextView
+ *
+ *  @param textView  The text view to limit
+ *  @param maxLength the maximum length of the field
+ */
+- (void)textView:(UITextView *)textView limitedToMaxLength:(int)maxLength;
+
+/**
+ *  Unsuported view are not considered when the contentSize is calculated
+ *
+ *  @param view the unsuported view
+ */
+- (void)addUnsuportedView:(UIView *)view;
 
 @end

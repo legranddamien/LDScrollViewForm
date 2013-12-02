@@ -12,6 +12,8 @@
 
 @interface LDViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextView *who;
+
 @end
 
 @implementation LDViewController
@@ -22,6 +24,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.title = @"Auto Layout";
     [self setForm:self.scrollView];
+    [self textView:self.who limitedToMaxLength:20];
+    
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"No Autolayout" style:UIBarButtonItemStylePlain target:self action:@selector(noautolayout)];
     self.navigationItem.rightBarButtonItem = rightButton;

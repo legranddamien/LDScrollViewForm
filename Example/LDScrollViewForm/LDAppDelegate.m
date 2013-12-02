@@ -13,6 +13,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
+    {
+        vc = [[LDNoAutoLayoutViewController alloc] initWithNibName:nil bundle:nil];
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.window.rootViewController = vc;
+        [self.window makeKeyAndVisible];
+        
+    }
+    
     return YES;
 }
 							

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LDAppDelegate : UIResponder <UIApplicationDelegate>
+#import "LDNoAutoLayoutViewController.h"
+
+@interface LDAppDelegate : UIResponder <UIApplicationDelegate> {
+    LDNoAutoLayoutViewController *vc;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

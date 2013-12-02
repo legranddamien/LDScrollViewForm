@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B535AB12-8299-453C-8E45-3AFB7ABBCE80</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LDScrollViewForm</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6EF08AEF-D078-4943-8478-E3EB89F39E7A</key>
+		<string>https://github.com/snoozeman/LDScrollViewForm.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Example/LDScrollViewForm.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6EF08AEF-D078-4943-8478-E3EB89F39E7A</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/snoozeman/LDScrollViewForm.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6EF08AEF-D078-4943-8478-E3EB89F39E7A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6EF08AEF-D078-4943-8478-E3EB89F39E7A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LDScrollViewForm</string>
+		</dict>
+	</array>
+</dict>
+</plist>

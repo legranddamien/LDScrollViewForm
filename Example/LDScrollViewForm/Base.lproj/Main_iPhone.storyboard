@@ -254,6 +254,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="scrollView" destination="x2b-Ky-pG6" id="AcT-hy-uEh"/>
+                        <outlet property="who" destination="ekI-6d-K0c" id="iSH-mw-UeL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
