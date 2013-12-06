@@ -17,6 +17,7 @@
     BOOL _animatingRotation;
     NSMutableDictionary *textViewHeights;
     NSMutableDictionary *limitedTextViews;
+    NSMutableDictionary *limitedTextField;
     UIView *currentSelectedView;
 }
 
@@ -43,6 +44,14 @@
  *  @param maxLength the maximum length of the field
  */
 - (void)textView:(UITextView *)textView limitedToMaxLength:(int)maxLength;
+
+/**
+ *  This method help you to add a limit of characters in a UITextField
+ *
+ *  @param textFiled  The text field to limit
+ *  @param maxLength the maximum length of the field
+ */
+- (void)textField:(UITextField *)textField limitedToMaxLength:(int)maxLength;
 
 /**
  *  Unsuported view are not considered when the contentSize is calculated

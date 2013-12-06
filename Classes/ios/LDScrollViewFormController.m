@@ -38,6 +38,8 @@
 
 - (void)updateFormWithView:(UIView *)view;
 
+- (BOOL)isViewNotOk:(UIView *)view;
+
 @end
 
 @implementation LDScrollViewFormController
@@ -123,6 +125,25 @@
     [limitedTextViews setObject:[NSNumber numberWithInt:maxLength] forKey:key];
 }
 
+- (void)textField:(UITextField *)textField limitedToMaxLength:(int)maxLength
+{
+    if(_form == nil) return;
+    
+    if(limitedTextField == nil)
+    {
+        limitedTextField = [NSMutableDictionary dictionary];
+    }
+    
+    NSValue *key = [NSValue valueWithNonretainedObject:textField];
+    
+    if ([limitedTextField objectForKey:key] != nil)
+    {
+        [limitedTextField removeObjectForKey:key];
+    }
+    
+    [limitedTextField setObject:[NSNumber numberWithInt:maxLength] forKey:key];
+}
+
 - (void)updateForm
 {
     if(_form == nil) return;
@@ -151,7 +172,6 @@
  */
 - (void)setupForm
 {
-    _form.delegate = self;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touche:)];
     [_form addGestureRecognizer:tap];
     
@@ -171,7 +191,10 @@
     
     for (UIView *subview in _form.subviews)
     {
-        if(_unsupportedViews != nil && [_unsupportedViews containsObject:subview])
+        //avoid unsupported views
+        //Add scrollbars in unsupported views
+        //It may change in iOS future updates (userInteractionEnabled to NO)
+        if([self isViewNotOk:subview])
         {
             continue;
         }
@@ -199,7 +222,12 @@
 {
     for (UIView *v in views)
     {
-        if([v respondsToSelector:@selector(isFirstResponder)] && ![v isEqual:self.view])
+        if([self isViewNotOk:v])
+        {
+            continue;
+        }
+        
+        if([v isKindOfClass:[UITextField class]] || [v isKindOfClass:[UITextView class]])
         {
             [v addObserver:self forKeyPath:@"firstResponder" options:NSKeyValueObservingOptionNew context:nil];
             if ([v isKindOfClass:[UITextField class]])
@@ -287,6 +315,8 @@
  */
 - (void)keyboardWillShow:(NSNotification *)notification
 {
+    if(_isKeyboardOnScreen) return;
+    
     CGRect end;
     [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&end];
     
@@ -656,6 +686,12 @@
     }
 }
 
+- (BOOL)isViewNotOk:(UIView *)view
+{
+    return ([view isKindOfClass:[UIImageView class]] && view.isUserInteractionEnabled == NO)
+    || (_unsupportedViews != nil && [_unsupportedViews containsObject:view]);
+}
+
 
 
 
@@ -696,7 +732,12 @@
     return NO;
 }
 
-
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)text
+{
+    //Limit the number of chars in UITextFields
+    NSValue *key = [NSValue valueWithNonretainedObject:textField];
+    return ([limitedTextField objectForKey:key] == nil) ? YES : textField.text.length + (text.length - range.length) <= [(NSNumber *)[limitedTextField objectForKey:key] intValue];
+}
 
 
 
