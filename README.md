@@ -3,8 +3,9 @@
 [![Version](http://cocoapod-badges.herokuapp.com/v/LDScrollViewForm/badge.png)](http://cocoadocs.org/docsets/LDScrollViewForm)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/LDScrollViewForm/badge.png)](http://cocoadocs.org/docsets/LDScrollViewForm)
 
-## Features
+LDScrollViewForm is ARC and work on iOS6+ (may work on iOS5 but not tested)
 
+## Features
 
 * Generate automatically the contentSize of the UIScrollView
 * Keyboard Avoiding

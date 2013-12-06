@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LDScrollViewForm"
-  s.version      = "0.2.0"
+  s.version      = "0.3.0"
   s.summary      = "Controller helping to manage a form on iOS by avoiding the keyboard and adapte the size of UITextViews"
   s.homepage     = "https://github.com/snoozeman/LDScrollViewForm"
   s.license      = 'MIT'
