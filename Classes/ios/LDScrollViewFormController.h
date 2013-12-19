@@ -23,6 +23,7 @@
 
 @property (nonatomic) CGFloat heightAboveKeyboard;
 @property (strong, nonatomic) NSArray *unsupportedViews;
+@property (strong, nonatomic) NSArray *unsupportedTextViews;
 
 /**
  *  This method start to buid your form 
@@ -59,5 +60,18 @@
  *  @param view the unsuported view
  */
 - (void)addUnsuportedView:(UIView *)view;
+
+/**
+ *  To add text views that will not update the height to fit with the content
+ *
+ *  @param textView a text view in the form
+ */
+- (void)addUnsuportedResizingTextView:(UITextView *)textView;
+
+/**
+ *  Sometime, when a field or text view is added after on the form,
+ *  you can call this method to restore delegates
+ */
+- (void)updateViewsObserver;
 
 @end

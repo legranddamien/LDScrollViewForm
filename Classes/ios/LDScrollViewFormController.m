@@ -84,6 +84,7 @@
     if(_form != nil)
     {
         [self removeViewsObservers:_form.subviews];
+        textViewHeights = nil;
         [self removeKeyboardObservers];
     }
 }
@@ -156,6 +157,28 @@
     NSMutableArray *array =  [NSMutableArray arrayWithObject:view];
     [array addObjectsFromArray:_unsupportedViews];
     _unsupportedViews = array;
+}
+
+- (void)addUnsuportedResizingTextView:(UITextView *)textView
+{
+    if(textView == nil) return;
+    NSMutableArray *array =  [NSMutableArray arrayWithObject:textView];
+    [array addObjectsFromArray:_unsupportedTextViews];
+    _unsupportedTextViews = array;
+}
+
+- (void)updateViewsObserver
+{
+    if(_form == nil)
+    {
+        return;
+    }
+    
+    [self removeViewsObservers:_form.subviews];
+    [self removeKeyboardObservers];
+    
+    [self observeViews:_form.subviews];
+    [self observeKeyboard];
 }
 
 
@@ -460,6 +483,15 @@
         offset = (subviewRect.origin.y + cursorPositionEnd.y + v.font.lineHeight) - (visibleSpace + _form.contentInset.top);
     }
     
+    //If the textview does not resize
+    if(_unsupportedTextViews != nil && [_unsupportedTextViews containsObject:v])
+    {
+        if (offset > subviewRect.origin.y + subviewRect.size.height + _heightAboveKeyboard - (visibleSpace + _form.contentInset.top))
+        {
+            offset = subviewRect.origin.y + subviewRect.size.height + _heightAboveKeyboard - (visibleSpace + _form.contentInset.top);
+        }
+    }
+    
     [_form setContentOffset:CGPointMake(0, offset) animated:YES];
 }
 
@@ -588,9 +620,38 @@
  */
 - (void)updateHeightForTextView:(UITextView *)textView withAnimated:(BOOL)animation
 {
+    if(_unsupportedTextViews != nil && [_unsupportedTextViews containsObject:textView])
+    {
+        [self avoidKeyboardForTextViewSelection:textView];
+        return;
+    }
+    
     NSValue *key = [NSValue valueWithNonretainedObject:textView];
     
-    CGFloat height = textView.contentSize.height;
+    CGFloat height = textView.frame.size.height;
+    
+    if(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
+    {
+        height = [textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(textView.frame.size.width, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping].height;
+    }
+    else
+    {
+    
+        CGSize s = [textView.text boundingRectWithSize:CGSizeMake(textView.frame.size.width, MAXFLOAT)
+                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                   attributes:@{NSFontAttributeName:textView.font,}
+                                      context:nil].size;
+        
+        height = ceil(s.height);
+    }
+    
+    height += textView.contentInset.top + textView.contentInset.bottom;
+    
+    if(height < textView.contentSize.height)
+    {
+        height = textView.contentSize.height;
+    }
+    
     if(height < [((NSNumber *)[textViewHeights objectForKey:key]) floatValue])
     {
         height = [((NSNumber *)[textViewHeights objectForKey:key]) floatValue];
@@ -747,6 +808,11 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     currentSelectedView = textView;
+    if (textView.contentSize.height > textView.frame.size.height)
+    {
+        CGPoint offset = CGPointMake(0, textView.contentSize.height - textView.frame.size.height);
+        [textView setContentOffset:offset animated:YES];
+    }
     [self updateHeightForTextView:textView withAnimated:YES];
 }
 
