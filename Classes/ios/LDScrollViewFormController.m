@@ -269,7 +269,9 @@
                 NSValue *key = [NSValue valueWithNonretainedObject:((UITextView *)v)];
                 if([textViewHeights objectForKey:((UITextView *)v)] == nil)
                 {
-                    [textViewHeights setObject:[NSNumber numberWithFloat:((UITextView *)v).frame.size.height] forKey:key];
+                    CGFloat h = ((UITextView *)v).frame.size.height;
+                    CGFloat h2 = ((UITextView *)v).contentSize.height;
+                    [textViewHeights setObject:[NSNumber numberWithFloat:MAX(h, h2)] forKey:key];
                 }
             }
         }
@@ -478,7 +480,7 @@
         offset = (subviewRect.origin.y + cursorPositionStart.y) - _form.contentInset.top;
     }
     
-    if ((subviewRect.origin.y + cursorPositionEnd.y + v.font.lineHeight) - _form.contentOffset.y > visibleSpace)
+    if ((subviewRect.origin.y + cursorPositionEnd.y + v.font.lineHeight) - MAX(0, _form.contentOffset.y) > visibleSpace)
     {
         offset = (subviewRect.origin.y + cursorPositionEnd.y + v.font.lineHeight) - (visibleSpace + _form.contentInset.top);
     }

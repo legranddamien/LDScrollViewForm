@@ -74,4 +74,13 @@
  */
 - (void)updateViewsObserver;
 
+/**
+ *  Find the first responder on the view and give it back
+ *
+ *  @param v the parent view, it will search in childs
+ *
+ *  @return the first responder view or nil
+ */
+- (UIView *)findFirstResponderWithView:(UIView *)v;
+
 @end
