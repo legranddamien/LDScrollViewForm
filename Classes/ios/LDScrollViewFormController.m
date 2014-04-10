@@ -150,6 +150,8 @@
     if(_form == nil) return;
     
     [self updateFormWithView:_form];
+    
+    [self defineContentSize];
 }
 
 - (void)addUnsuportedView:(UIView *)view
