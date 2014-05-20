@@ -634,20 +634,8 @@
     
     CGFloat height = textView.frame.size.height;
     
-    if(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
-    {
-        height = [textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(textView.frame.size.width, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping].height;
-    }
-    else
-    {
-    
-        CGSize s = [textView.text boundingRectWithSize:CGSizeMake(textView.frame.size.width, MAXFLOAT)
-                                      options:NSStringDrawingUsesLineFragmentOrigin
-                                   attributes:@{NSFontAttributeName:textView.font,}
-                                      context:nil].size;
-        
-        height = ceil(s.height);
-    }
+    CGSize s = [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)];
+    height = ceil(s.height);
     
     height += textView.contentInset.top + textView.contentInset.bottom;
     
